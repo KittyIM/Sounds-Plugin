@@ -36,7 +36,7 @@ namespace KittySDK
       const QMap<QString, KittySDK::Contact*> &contacts() { return m_contacts; }
       virtual void insertContact(const QString &uid, KittySDK::Contact *contact) { m_contacts.insert(uid, contact); }
 
-      virtual KittySDK::Contact *newContact(const QString &uid) { return 0; }
+      virtual KittySDK::Contact *newContact(const QString &uid) = 0;
 
       virtual KittySDK::Protocol::Status status() const { return KittySDK::Protocol::Offline; }
 
