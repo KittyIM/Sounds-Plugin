@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>glyphs/sound_mute.png</file>
+    </qresource>
+</RCC>
