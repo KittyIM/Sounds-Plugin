@@ -1,7 +1,7 @@
 #include "SettingWidget.h"
 #include "ui_SettingWidget.h"
 
-#include "SoundsConstants.h"
+#include "SDK/SoundsConstants.h"
 #include "SDK/PluginCore.h"
 #include "SDK/constants.h"
 
