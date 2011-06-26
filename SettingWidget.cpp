@@ -11,7 +11,7 @@
 
 using namespace KittySDK;
 
-KittySDK::SettingWidget::SettingWidget(PluginCore *core, QWidget *parent): SettingPage(0, parent), m_ui(new Ui::SettingWidget), m_core(core)
+KittySDK::SettingWidget::SettingWidget(PluginCore *core, QWidget *parent): SettingPage(core, parent), m_ui(new Ui::SettingWidget)
 {
   m_ui->setupUi(this);
 

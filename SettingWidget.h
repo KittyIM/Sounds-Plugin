@@ -22,8 +22,6 @@ namespace KittySDK
       explicit SettingWidget(PluginCore *core, QWidget *parent = 0);
       ~SettingWidget();
 
-      KittySDK::PluginCore *core() { return m_core; }
-
       void addItem(const QString &id, const QString &descr);
 
       void apply();
@@ -38,7 +36,6 @@ namespace KittySDK
 
   private:
       Ui::SettingWidget *m_ui;
-      KittySDK::PluginCore *m_core;
   };
 }
 
