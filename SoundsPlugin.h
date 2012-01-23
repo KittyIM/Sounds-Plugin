@@ -10,36 +10,36 @@
 
 namespace KittySDK
 {
-  class SettingWidget;
-  class Message;
+	class SettingWidget;
+	class Message;
 
-  class SoundsPlugin: public Plugin
-  {
-    Q_OBJECT
+	class SoundsPlugin: public Plugin
+	{
+		Q_OBJECT
 
-    public:
-      SoundsPlugin(PluginCore *pcore);
-      ~SoundsPlugin();
+		public:
+			SoundsPlugin(PluginCore *pcore);
+			~SoundsPlugin();
 
-      void init();
-      void load();
-      void unload();
+			void init();
+			void load();
+			void unload();
 
-      void playSound(const QString &id);
+			void playSound(const QString &id);
 
-    public slots:
-      void applySettings();
-      void execAction(const QString &name, const QMap<QString, QVariant> &args);
+		public slots:
+			void applySettings();
+			void execAction(const QString &name, const QMap<QString, QVariant> &args);
 
-    private slots:
-      void setMuted(bool muted);
+		private slots:
+			void setMuted(bool muted);
 
-    private:
-      QMap<QString, QString> m_sounds;
-      SettingWidget *m_settings;
-      QAction *m_muteAction;
-      bool m_muted;
-  };
+		private:
+			QMap<QString, QString> m_sounds;
+			SettingWidget *m_settings;
+			QAction *m_muteAction;
+			bool m_muted;
+	};
 }
 
 #endif // SOUNDSPLUGIN_H
