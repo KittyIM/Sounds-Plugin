@@ -1,37 +1,40 @@
-#include "SettingWidget.h"
-#include "ui_SettingWidget.h"
+#include "SoundsSettingsPage.h"
+#include "ui_SoundsSettingsPage.h"
 
-#include "SDK/SoundsConstants.h"
-#include "SDK/PluginCore.h"
-#include "SDK/constants.h"
+#include <SoundsConstants.h>
+#include <SDKConstants.h>
+#include <IPluginCore.h>
 
 #include <QtCore/QDebug>
 #include <QtGui/QFileDialog>
 #include <QtGui/QSound>
 
-using namespace KittySDK;
+namespace Sounds
+{
 
-KittySDK::SettingWidget::SettingWidget(PluginCore *core, QWidget *parent): SettingPage(core, parent), m_ui(new Ui::SettingWidget)
+SettingsPage::SettingsPage(KittySDK::IPluginCore *core, QWidget *parent):
+	KittySDK::ISettingsPage(core, parent),
+	m_ui(new Ui::SettingsPage)
 {
 	m_ui->setupUi(this);
 
-	setIcon(Icons::I_SOUND);
+	setIcon(KittySDK::Icons::I_SOUND);
 
-	addItem(Sounds::S_MSG_RECV, tr("Message received"));
-	addItem(Sounds::S_MSG_RECV_FIRST, tr("Message received (first)"));
-	addItem(Sounds::S_MSG_SENT, tr("Message sent"));
-	addItem(Sounds::S_CONTACT_AVAIL, tr("Contact available"));
-	addItem(Sounds::S_CONTACT_UNAVAIL, tr("Contact unavailable"));
-	addItem(Sounds::S_ERROR, tr("Error"));
-	addItem(Sounds::S_FILE_REQ, tr("File transfer request"));
+	addItem(KittySDK::Sounds::S_MSG_RECV, tr("Message received"));
+	addItem(KittySDK::Sounds::S_MSG_RECV_FIRST, tr("Message received (first)"));
+	addItem(KittySDK::Sounds::S_MSG_SENT, tr("Message sent"));
+	addItem(KittySDK::Sounds::S_CONTACT_AVAIL, tr("Contact available"));
+	addItem(KittySDK::Sounds::S_CONTACT_UNAVAIL, tr("Contact unavailable"));
+	addItem(KittySDK::Sounds::S_ERROR, tr("Error"));
+	addItem(KittySDK::Sounds::S_FILE_REQ, tr("File transfer request"));
 }
 
-KittySDK::SettingWidget::~SettingWidget()
+SettingsPage::~SettingsPage()
 {
 	delete m_ui;
 }
 
-void KittySDK::SettingWidget::addItem(const QString &id, const QString &descr)
+void SettingsPage::addItem(const QString &id, const QString &descr)
 {
 	if(!id.isEmpty() && !descr.isEmpty()) {
 		QTreeWidgetItem *item = new QTreeWidgetItem();
@@ -42,7 +45,7 @@ void KittySDK::SettingWidget::addItem(const QString &id, const QString &descr)
 	}
 }
 
-void KittySDK::SettingWidget::apply()
+void SettingsPage::apply()
 {
 	for(int i = 0; i < m_ui->treeWidget->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = m_ui->treeWidget->topLevelItem(i);
@@ -51,7 +54,7 @@ void KittySDK::SettingWidget::apply()
 	}
 }
 
-void KittySDK::SettingWidget::reset()
+void SettingsPage::reset()
 {
 	for(int i = 0; i < m_ui->treeWidget->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = m_ui->treeWidget->topLevelItem(i);
@@ -62,7 +65,7 @@ void KittySDK::SettingWidget::reset()
 	on_treeWidget_currentItemChanged(0, 0);
 }
 
-void KittySDK::SettingWidget::on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+void SettingsPage::on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
 	m_ui->pathEdit->setEnabled(current);
 	m_ui->playButton->setEnabled(current);
@@ -73,7 +76,7 @@ void KittySDK::SettingWidget::on_treeWidget_currentItemChanged(QTreeWidgetItem *
 	}
 }
 
-void KittySDK::SettingWidget::on_browseButton_clicked()
+void SettingsPage::on_browseButton_clicked()
 {
 	QString filePath = QFileDialog::getOpenFileName(this, tr("Choose sound file"), "", "*.wav");
 	if(!filePath.isEmpty()) {
@@ -89,7 +92,9 @@ void KittySDK::SettingWidget::on_browseButton_clicked()
 	}
 }
 
-void KittySDK::SettingWidget::on_playButton_clicked()
+void SettingsPage::on_playButton_clicked()
 {
 	QSound::play(m_ui->pathEdit->text());
+}
+
 }

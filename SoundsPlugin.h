@@ -1,25 +1,24 @@
-#ifndef SOUNDSPLUGIN_H
-#define SOUNDSPLUGIN_H
+#ifndef SOUNDS_PLUGIN_H
+#define SOUNDS_PLUGIN_H
 
-#include "SDK/Plugin.h"
+#include <IPlugin.h>
 
 #include <QtCore/QDebug>
 
 #define qDebug() qDebug() << "[Sounds]"
 #define qWarning() qWarning() << "[Sounds]"
 
-namespace KittySDK
+namespace Sounds
 {
-	class SettingWidget;
-	class Message;
+	class SettingsPage;
 
-	class SoundsPlugin: public Plugin
+	class Plugin: public KittySDK::IPlugin
 	{
 		Q_OBJECT
 
 		public:
-			SoundsPlugin(PluginCore *pcore);
-			~SoundsPlugin();
+			Plugin(KittySDK::IPluginCore *pcore);
+			~Plugin();
 
 			void init();
 			void load();
@@ -36,10 +35,10 @@ namespace KittySDK
 
 		private:
 			QMap<QString, QString> m_sounds;
-			SettingWidget *m_settings;
+			SettingsPage *m_settings;
 			QAction *m_muteAction;
 			bool m_muted;
 	};
 }
 
-#endif // SOUNDSPLUGIN_H
+#endif // SOUNDS_PLUGIN_H

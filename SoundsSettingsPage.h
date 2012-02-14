@@ -1,26 +1,26 @@
-#ifndef SETTINGWIDGET_H
-#define SETTINGWIDGET_H
+#ifndef SOUNDS_SETTINGPAGE_H
+#define SOUNDS_SETTINGPAGE_H
 
-#include "SDK/SettingPage.h"
+#include <ISettingsPage.h>
 
 class QTreeWidgetItem;
 
-namespace Ui
+namespace Sounds
 {
-	class SettingWidget;
-}
+	namespace Ui
+	{
+		class SettingsPage;
+	}
 
-namespace KittySDK
-{
 	class PluginCore;
 
-	class SettingWidget: public SettingPage
+	class SettingsPage: public KittySDK::ISettingsPage
 	{
 		Q_OBJECT
 
 		public:
-			explicit SettingWidget(PluginCore *core, QWidget *parent = 0);
-			~SettingWidget();
+			explicit SettingsPage(KittySDK::IPluginCore *core, QWidget *parent = 0);
+			~SettingsPage();
 
 			void addItem(const QString &id, const QString &descr);
 
@@ -29,14 +29,12 @@ namespace KittySDK
 
 		private slots:
 			void on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
-
 			void on_browseButton_clicked();
-
 			void on_playButton_clicked();
 
 		private:
-			Ui::SettingWidget *m_ui;
+			Ui::SettingsPage *m_ui;
 	};
 }
 
-#endif // SETTINGWIDGET_H
+#endif // SOUNDS_SETTINGPAGE_H

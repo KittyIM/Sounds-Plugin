@@ -1,21 +1,16 @@
-TARGET    = Sounds
-TEMPLATE  = lib
-QT       += core gui
+TARGET     = Sounds
+TEMPLATE   = lib
+QT        += core gui
 
-SOURCES  += SoundsPlugin.cpp \
-    SettingWidget.cpp
+SOURCES   += SoundsPlugin.cpp \
+             SoundsSettingsPage.cpp
 
-HEADERS  += SoundsPlugin.h \
-    SDK/SettingPage.h \
-    SDK/PluginCore.h \
-    SDK/Plugin.h \
-    SDK/constants.h \
-    SDK/Message.h \
-    SDK/SoundsConstants.h \
-    SettingWidget.h
+HEADERS   += SoundsPlugin.h \
+             SoundsSettingsPage.h
 
-FORMS += \
-    SettingWidget.ui
+FORMS     += SoundsSettingsPage.ui
 
-RESOURCES += \
-    res/res.qrc
+RESOURCES += res/res.qrc
+
+isEmpty(SDK_PATH):error(Set the SDK_PATH variable!)
+include($$SDK_PATH/KittySDK.pri)

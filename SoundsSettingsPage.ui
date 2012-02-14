@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SettingWidget</class>
- <widget class="KittySDK::SettingPage" name="SettingWidget">
+ <class>Sounds::SettingsPage</class>
+ <widget class="QWidget" name="Sounds::SettingsPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -83,14 +83,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KittySDK::SettingPage</class>
-   <extends>QWidget</extends>
-   <header>SDK/SettingPage.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
