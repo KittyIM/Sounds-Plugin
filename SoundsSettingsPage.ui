@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Sounds::SettingsPage</class>
- <widget class="QWidget" name="Sounds::SettingsPage">
+ <widget class="KittySDK::ISettingsPage" name="Sounds::SettingsPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,11 +13,11 @@
   <property name="windowTitle">
    <string>Sounds</string>
   </property>
-  <property name="name" stdset="0">
-   <string>Sounds</string>
-  </property>
   <property name="icon" stdset="0">
    <string/>
+  </property>
+  <property name="id" stdset="0">
+   <string>Plugin.Sounds</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
@@ -83,6 +83,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KittySDK::ISettingsPage</class>
+   <extends>QWidget</extends>
+   <header location="global">ISettingsPage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets> 
  <resources/>
  <connections/>
 </ui>

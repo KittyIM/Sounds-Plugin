@@ -37,11 +37,10 @@ SettingsPage::~SettingsPage()
 void SettingsPage::addItem(const QString &id, const QString &descr)
 {
 	if(!id.isEmpty() && !descr.isEmpty()) {
-		QTreeWidgetItem *item = new QTreeWidgetItem();
+		QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->treeWidget);
 		item->setText(0, descr);
 		item->setText(1, id);
 		item->setText(2, core()->setting(id).toString());
-		m_ui->treeWidget->addTopLevelItem(item);
 	}
 }
 
