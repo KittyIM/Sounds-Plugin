@@ -13,7 +13,13 @@ namespace Sounds
 
 Plugin::Plugin(KittySDK::IPluginCore *pcore): KittySDK::IPlugin(pcore)
 {
-	m_info = new KittySDK::IPluginInfo("Sounds", "0.0.1", "arturo182", "arturo182@tlen.pl", "http://www.arturpacholec.pl/");
+	m_info = new KittySDK::IPluginInfo();
+	m_info->setName(tr("Sounds"));
+	m_info->setId("sounds");
+	m_info->setVersion("0.0.1");
+	m_info->setAuthor("arturo182");
+	m_info->setEmail("arturo182@tlen.pl");
+	m_info->setURL("http://www.arturpacholec.pl/");
 }
 
 Plugin::~Plugin()
