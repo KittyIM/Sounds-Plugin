@@ -13,12 +13,6 @@
   <property name="windowTitle">
    <string>Sounds</string>
   </property>
-  <property name="icon" stdset="0">
-   <string/>
-  </property>
-  <property name="id" stdset="0">
-   <string>Plugin.Sounds</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
     <number>0</number>
@@ -90,7 +84,7 @@
    <header location="global">ISettingsPage.h</header>
    <container>1</container>
   </customwidget>
- </customwidgets> 
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
