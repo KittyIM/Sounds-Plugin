@@ -19,15 +19,15 @@ SettingsPage::SettingsPage(KittySDK::IPluginCore *core, QWidget *parent):
 	m_ui->setupUi(this);
 
 	setIcon(KittySDK::Icons::I_SOUND);
-	setId(KittySDK::SettingPages::S_SOUNDS);
+	setId(SettingPages::S_SOUNDS);
 
-	addItem(KittySDK::Sounds::S_MSG_RECV, tr("Message received"));
-	addItem(KittySDK::Sounds::S_MSG_RECV_FIRST, tr("Message received (first)"));
-	addItem(KittySDK::Sounds::S_MSG_SENT, tr("Message sent"));
-	addItem(KittySDK::Sounds::S_CONTACT_AVAIL, tr("Contact available"));
-	addItem(KittySDK::Sounds::S_CONTACT_UNAVAIL, tr("Contact unavailable"));
-	addItem(KittySDK::Sounds::S_ERROR, tr("Error"));
-	addItem(KittySDK::Sounds::S_FILE_REQ, tr("File transfer request"));
+	addItem(Sounds::S_MSG_RECV, tr("Message received"));
+	addItem(Sounds::S_MSG_RECV_FIRST, tr("Message received (first)"));
+	addItem(Sounds::S_MSG_SENT, tr("Message sent"));
+	addItem(Sounds::S_CONTACT_AVAIL, tr("Contact available"));
+	addItem(Sounds::S_CONTACT_UNAVAIL, tr("Contact unavailable"));
+	addItem(Sounds::S_ERROR, tr("Error"));
+	addItem(Sounds::S_FILE_REQ, tr("File transfer request"));
 }
 
 SettingsPage::~SettingsPage()
@@ -47,7 +47,7 @@ void SettingsPage::addItem(const QString &id, const QString &descr)
 
 void SettingsPage::apply()
 {
-	for(int i = 0; i < m_ui->treeWidget->topLevelItemCount(); i++) {
+	for(int i = 0; i < m_ui->treeWidget->topLevelItemCount(); ++i) {
 		QTreeWidgetItem *item = m_ui->treeWidget->topLevelItem(i);
 
 		core()->setSetting(item->text(1), item->text(2));
@@ -56,7 +56,7 @@ void SettingsPage::apply()
 
 void SettingsPage::reset()
 {
-	for(int i = 0; i < m_ui->treeWidget->topLevelItemCount(); i++) {
+	for(int i = 0; i < m_ui->treeWidget->topLevelItemCount(); ++i) {
 		QTreeWidgetItem *item = m_ui->treeWidget->topLevelItem(i);
 
 		item->setText(2, core()->setting(item->text(1)).toString());
@@ -73,19 +73,19 @@ void SettingsPage::retranslate()
 		QTreeWidgetItem *item = m_ui->treeWidget->topLevelItem(i);
 		QString id = item->text(1);
 
-		if(id == KittySDK::Sounds::S_MSG_RECV) {
+		if(id == Sounds::S_MSG_RECV) {
 			item->setText(0, tr("Message received"));
-		} else if(id == KittySDK::Sounds::S_MSG_RECV_FIRST) {
+		} else if(id == Sounds::S_MSG_RECV_FIRST) {
 			item->setText(0, tr("Message received (first)"));
-		} else if(id == KittySDK::Sounds::S_MSG_SENT) {
+		} else if(id == Sounds::S_MSG_SENT) {
 			item->setText(0, tr("Message sent"));
-		} else if(id == KittySDK::Sounds::S_CONTACT_AVAIL) {
+		} else if(id == Sounds::S_CONTACT_AVAIL) {
 			item->setText(0, tr("Contact available"));
-		} else if(id == KittySDK::Sounds::S_CONTACT_UNAVAIL) {
+		} else if(id == Sounds::S_CONTACT_UNAVAIL) {
 			item->setText(0, tr("Contact unavailable"));
-		} else if(id == KittySDK::Sounds::S_ERROR) {
+		} else if(id == Sounds::S_ERROR) {
 			item->setText(0, tr("Error"));
-		} else if(id == KittySDK::Sounds::S_FILE_REQ) {
+		} else if(id == Sounds::S_FILE_REQ) {
 			item->setText(0, tr("File transfer request"));
 		}
 	}

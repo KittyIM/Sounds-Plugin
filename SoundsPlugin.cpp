@@ -29,19 +29,15 @@ Plugin::~Plugin()
 
 void Plugin::init()
 {
-	core()->addIcon(KittySDK::Icons::I_SOUND_MUTE, QPixmap(":/glyphs/sound_mute.png"));
+	core()->addIcon(Icons::I_MUTE, QPixmap(":/glyphs/sound_mute.png"));
 
-	m_muteAction = new QAction(core()->icon(KittySDK::Icons::I_SOUND_MUTE), tr("Mute sounds"), this);
-	m_muteAction->setCheckable(true);
-	connect(m_muteAction, SIGNAL(triggered(bool)), this, SLOT(setMuted(bool)));
-
-	m_sounds.insert(KittySDK::Sounds::S_MSG_RECV, core()->setting(KittySDK::Sounds::S_MSG_RECV).toString());
-	m_sounds.insert(KittySDK::Sounds::S_MSG_RECV_FIRST, core()->setting(KittySDK::Sounds::S_MSG_RECV_FIRST).toString());
-	m_sounds.insert(KittySDK::Sounds::S_MSG_SENT, core()->setting(KittySDK::Sounds::S_MSG_SENT).toString());
-	m_sounds.insert(KittySDK::Sounds::S_CONTACT_AVAIL, core()->setting(KittySDK::Sounds::S_CONTACT_AVAIL).toString());
-	m_sounds.insert(KittySDK::Sounds::S_CONTACT_UNAVAIL, core()->setting(KittySDK::Sounds::S_CONTACT_UNAVAIL).toString());
-	m_sounds.insert(KittySDK::Sounds::S_ERROR, core()->setting(KittySDK::Sounds::S_ERROR).toString());
-	m_sounds.insert(KittySDK::Sounds::S_FILE_REQ, core()->setting(KittySDK::Sounds::S_FILE_REQ).toString());
+	m_sounds.insert(Sounds::S_MSG_RECV, core()->setting(Sounds::S_MSG_RECV).toString());
+	m_sounds.insert(Sounds::S_MSG_RECV_FIRST, core()->setting(Sounds::S_MSG_RECV_FIRST).toString());
+	m_sounds.insert(Sounds::S_MSG_SENT, core()->setting(Sounds::S_MSG_SENT).toString());
+	m_sounds.insert(Sounds::S_CONTACT_AVAIL, core()->setting(Sounds::S_CONTACT_AVAIL).toString());
+	m_sounds.insert(Sounds::S_CONTACT_UNAVAIL, core()->setting(Sounds::S_CONTACT_UNAVAIL).toString());
+	m_sounds.insert(Sounds::S_ERROR, core()->setting(Sounds::S_ERROR).toString());
+	m_sounds.insert(Sounds::S_FILE_REQ, core()->setting(Sounds::S_FILE_REQ).toString());
 }
 
 void Plugin::load()
@@ -49,7 +45,13 @@ void Plugin::load()
 	m_settings = new SettingsPage(core());
 	core()->addSettingPage(m_settings, KittySDK::SettingPages::S_DISPLAY);
 
-	core()->addToolbarAction(KittySDK::Toolbars::TB_PLUGINS, m_muteAction);
+	QAction *muteAction = new QAction(tr("Mute sounds"), this);
+	connect(muteAction, SIGNAL(triggered(bool)), SLOT(setMuted(bool)));
+	muteAction->setCheckable(true);
+	muteAction->setProperty("icon_id", Icons::I_MUTE);
+
+	core()->addAction(Actions::A_MUTE, muteAction);
+	core()->addToolbarAction(KittySDK::Toolbars::TB_PLUGINS, muteAction);
 }
 
 void Plugin::unload()
@@ -84,6 +86,9 @@ void Plugin::execAction(const QString &name, const QMap<QString, QVariant> &args
 		if(args.contains("id")) {
 			playSound(args.value("id").toString());
 		}
+	} else if(name == "retranslate") {
+		m_info->setName(tr("Sounds"));
+		core()->action(Actions::A_MUTE)->setText(tr("Mute sounds"));
 	} else {
 		qWarning() << "Got unknown execAction request" << name;
 	}

@@ -36,7 +36,7 @@ namespace Sounds
 		private:
 			QMap<QString, QString> m_sounds;
 			SettingsPage *m_settings;
-			QAction *m_muteAction;
+
 			bool m_muted;
 	};
 }
