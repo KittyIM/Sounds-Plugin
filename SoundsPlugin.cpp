@@ -11,7 +11,10 @@
 namespace Sounds
 {
 
-Plugin::Plugin(KittySDK::IPluginCore *pcore): KittySDK::IPlugin(pcore)
+Plugin::Plugin(KittySDK::IPluginCore *pcore):
+	KittySDK::IPlugin(pcore),
+	m_settings(0),
+	m_muted(false)
 {
 	m_info = new KittySDK::IPluginInfo();
 	m_info->setName(tr("Sounds"));
