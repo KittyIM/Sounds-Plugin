@@ -45,6 +45,9 @@
        <property name="enabled">
         <bool>false</bool>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -70,6 +73,16 @@
        </property>
        <property name="text">
         <string>Play</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clearButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Clear</string>
        </property>
       </widget>
      </item>

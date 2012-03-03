@@ -36,6 +36,8 @@ namespace Sounds
 			void on_browseButton_clicked();
 			void on_playButton_clicked();
 
+			void on_clearButton_clicked();
+
 		private:
 			Ui::SettingsPage *m_ui;
 	};

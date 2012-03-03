@@ -99,6 +99,7 @@ void SettingsPage::on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QT
 	m_ui->pathEdit->setEnabled(current);
 	m_ui->playButton->setEnabled(current);
 	m_ui->browseButton->setEnabled(current);
+	m_ui->clearButton->setEnabled(current && !current->text(2).isEmpty());
 	m_ui->pathEdit->clear();
 
 	if(current) {
@@ -127,4 +128,14 @@ void SettingsPage::on_playButton_clicked()
 	QSound::play(m_ui->pathEdit->text());
 }
 
+}
+
+void Sounds::SettingsPage::on_clearButton_clicked()
+{
+	if(QTreeWidgetItem *current = m_ui->treeWidget->currentItem()) {
+		m_ui->pathEdit->clear();
+		current->setText(2, "");
+
+		m_ui->treeWidget->setFocus();
+	}
 }
