@@ -46,6 +46,7 @@ void Plugin::init()
 void Plugin::load()
 {
 	m_settings = new SettingsPage(core());
+	connect(m_settings, SIGNAL(applied()), SLOT(applySettings()));
 	core()->addSettingPage(m_settings, KittySDK::SettingPages::S_DISPLAY);
 
 	QAction *muteAction = new QAction(tr("Mute sounds"), this);
@@ -71,6 +72,7 @@ void Plugin::playSound(const QString &id)
 
 void Plugin::applySettings()
 {
+	qDebug() << "applying sounds";
 	QMutableMapIterator<QString, QString> it(m_sounds);
 	while(it.hasNext()) {
 		it.next();

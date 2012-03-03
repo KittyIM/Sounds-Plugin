@@ -28,6 +28,9 @@ namespace Sounds
 			void reset();
 			void retranslate();
 
+		signals:
+			void applied();
+
 		private slots:
 			void on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 			void on_browseButton_clicked();

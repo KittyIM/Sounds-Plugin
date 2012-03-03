@@ -52,6 +52,8 @@ void SettingsPage::apply()
 
 		core()->setSetting(item->text(1), item->text(2));
 	}
+
+	emit applied();
 }
 
 void SettingsPage::reset()
@@ -62,7 +64,8 @@ void SettingsPage::reset()
 		item->setText(2, core()->setting(item->text(1)).toString());
 	}
 
-	on_treeWidget_currentItemChanged(0, 0);
+	//m_ui->treeWidget->clearSelection();
+	m_ui->treeWidget->setCurrentItem(0);
 }
 
 void SettingsPage::retranslate()
@@ -96,6 +99,7 @@ void SettingsPage::on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QT
 	m_ui->pathEdit->setEnabled(current);
 	m_ui->playButton->setEnabled(current);
 	m_ui->browseButton->setEnabled(current);
+	m_ui->pathEdit->clear();
 
 	if(current) {
 		m_ui->pathEdit->setText(current->text(2));
